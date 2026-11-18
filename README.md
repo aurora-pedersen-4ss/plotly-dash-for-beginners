@@ -4,7 +4,7 @@ A minimal Plotly Dash app to use as the starting point for the training session.
 
 ## Prerequisites
 
-- Python 3.9 or newer. Check with:
+- Python 3.13 or newer. Check with:
 
   ```bash
   python --version
