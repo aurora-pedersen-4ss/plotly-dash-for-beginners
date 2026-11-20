@@ -36,14 +36,14 @@ def update_card(n_clicks, text):
     return f"Button clicked {n_clicks} times and I wrote {text}"
 
 
-# By default, each Output can belong to only ONE callback. Remove
-# allow_duplicate=True below and Dash shows a "Duplicate callback outputs" error.
-#
-# allow_duplicate=True lets a second callback write to the same output.
+# By default, each Output can belong to only ONE callback. Dash shows a 
+# "Duplicate callback outputs" error since we have two callbacks trying to 
+# update the same output.Add allow_duplicate=True in the Output(...) below.  
+# This lets a second callback write to the same output.
 # Dash requires prevent_initial_call=True with it, otherwise both callbacks
 # would race to set the card when the page loads.
 @callback(
-    Output("card", "children", allow_duplicate=True),
+    Output("card", "children"),
     Input("reset-button", "n_clicks"),
     prevent_initial_call=True,
 )
@@ -58,4 +58,4 @@ def reset_card(n_clicks):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5050)

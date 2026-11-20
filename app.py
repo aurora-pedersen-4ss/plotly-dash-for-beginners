@@ -73,4 +73,5 @@ app.layout = html.Div(
 
 # Start the development server
 if __name__ == "__main__":
-    app.run(debug=True)
+    # set debug=False, host="0.0.0.0" and port=5050 for production
+    app.run(debug=True, port=5050)

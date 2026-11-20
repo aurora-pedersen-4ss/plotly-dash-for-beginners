@@ -70,8 +70,8 @@ pip install -r requirements.txt
 
 ## 5. Walk through the steps
 
-The `steps/` folder builds a small app one idea at a time. Run each one from the repo root,
-open <http://127.0.0.1:8050> in your browser, and compare it with the previous step:
+The `steps/` folder builds a small app one idea at a time where we will make small modifications to change the behaviour of the Dash app. Run each one from the repo root,
+open <http://127.0.0.1:5050> in your browser, and compare it with the previous step:
 
 | Step | What it adds |
 |---|---|
@@ -95,7 +95,7 @@ Build a trigonometry explorer in `app.py`. The maths (`compute_trig`) and the pl
 python app.py
 ```
 
-Stuck? `suggested_solution.py` has one way to do it.
+Open <http://127.0.0.1:5050> again. Stuck? `suggested_solution.py` has one way to do it.
 
 ### Set the app title
 
@@ -109,8 +109,7 @@ $env:APP_TITLE = "Wave explorer"
 python app.py
 ```
 
-When you publish the app, set `APP_TITLE` in the hosting service's environment settings
-instead. If it isn't set, the heading is **My trigonometry app**.
+When you publish the app, set `APP_TITLE` in the dashboard's configuration in 4insight instead. If it isn't set, the heading is **My trigonometry app** by default.
 
 ## 7. Stop the app
 
@@ -121,3 +120,17 @@ To leave the virtual environment, run:
 ```bash
 deactivate
 ```
+
+## Resources
+
+### How to use Dash
+
+- Dash tutorial: [Part 1. Layout | Plotly Dash](https://dash.plotly.com/layout)
+- Dash callbacks: [Basic Callbacks | Plotly Dash](https://dash.plotly.com/basic-callbacks)
+- Debugging and dev tools: [Dev Tools | Plotly Dash](https://dash.plotly.com/devtools)
+- Questions and answers: [Plotly Community Forum](https://community.plotly.com/)
+
+### Dash UI components
+
+- Dash core components (`dcc`): [Dash Core Components | Plotly Dash](https://dash.plotly.com/dash-core-components)
+- Dash Bootstrap components (`dbc`): [Components - dbc docs](https://www.dash-bootstrap-components.com/docs/components/)
