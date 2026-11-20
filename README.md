@@ -4,7 +4,7 @@ A beginner introduction to Plotly Dash: step-by-step examples in `steps/`, then 
 
 ## Prerequisites
 
-- Python 3.9 or newer. Check with:
+- Python 3.13 or newer. Check with:
 
   ```bash
   python --version
