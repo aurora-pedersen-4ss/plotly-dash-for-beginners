@@ -1,7 +1,12 @@
+import os
+
 from dash import Dash, State, html, callback, Input, Output, dcc
 import dash_bootstrap_components as dbc
 import numpy as np
 import plotly.graph_objs as go
+
+# The heading comes from the APP_TITLE environment variable, with a default
+APP_TITLE = os.environ.get("APP_TITLE", "My trigonometry app")
 
 FUNCTIONS = {
     "sin": np.sin,
@@ -22,6 +27,20 @@ def compute_trig(func, a, b, c, d, x):
         return a * func(b * x + c) + d
     return None
 
+def make_figure(func_name, a, b, c, d):
+    # Build the plot of f(x) = a * func(b * x + c) + d (same as in app.py)
+    fig = go.Figure()
+    if func_name not in FUNCTIONS or None in (a, b, c, d):
+        return fig  # empty plot until every value is filled in
+
+    func = FUNCTIONS[func_name]
+    x = np.linspace(-10, 10, 400)
+    y = compute_trig(func, a, b, c, d, x)
+
+    fig.add_trace(go.Scatter(x=x, y=y, mode="lines"))
+    fig.update_layout(title=f"f(x) = {a} * {func_name}({b} * x + {c}) + {d}")
+    return fig
+
 # Create the Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -29,7 +48,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = html.Div(
     [
         html.Div([
-            html.H1("This is my trigonometry app!"),
+            html.H1(APP_TITLE),
             html.P("Explore trigonometric functions and their properties."),
         ]),
         dbc.Row(children=[ # This arranges the inputs in one row instead of stacking them vertically
@@ -61,19 +80,7 @@ app.layout = html.Div(
     State("param-d", "value"),
 )
 def calculate(n_clicks, func, a, b, c, d):
-    fig = go.Figure()
-    
-    if func in FUNCTIONS:
-        func = FUNCTIONS[func]
-    
-    x = np.linspace(-10, 10, 400)
-    y = compute_trig(func, a, b, c, d, x)
-    title = f"f(x) = {a} * {func.__name__}({b} * x + {c}) + {d}"
-
-    fig.update_layout(title=title)
-    fig.add_trace(go.Scatter(x=x, y=y, mode='lines'))
-
-    return fig
+    return make_figure(func, a, b, c, d)
 
 # Start the development server
 if __name__ == "__main__":

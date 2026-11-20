@@ -1,6 +1,6 @@
 # Dash Hello World
 
-A minimal Plotly Dash app to use as the starting point for the training session.
+A beginner introduction to Plotly Dash: step-by-step examples in `steps/`, then an exercise in `app.py`.
 
 ## Prerequisites
 
@@ -68,17 +68,51 @@ When it is active, you will see `(.venv)` at the start of your terminal prompt.
 pip install -r requirements.txt
 ```
 
-## 5. Run the app
+## 5. Walk through the steps
+
+The `steps/` folder builds a small app one idea at a time. Run each one from the repo root,
+open <http://127.0.0.1:8050> in your browser, and compare it with the previous step:
+
+| Step | What it adds |
+|---|---|
+| `python steps/step_1_hello.py` | The smallest Dash app: a heading and a paragraph |
+| `python steps/step_2_components.py` | A button, a text input and a card |
+| `python steps/step_3_callback.py` | A callback: clicking the button updates the card |
+| `python steps/step_4_state.py` | `State` and `prevent_initial_call` |
+| `python steps/step_5_duplicate_outputs.py` | Two callbacks updating the same output with `allow_duplicate` |
+
+Stop each one with `Ctrl+C` before starting the next.
+
+Because the apps run with `debug=True`, the page reloads automatically when you save changes to the file.
+
+## 6. The exercise
+
+Build a trigonometry explorer in `app.py`. The maths (`compute_trig`) and the plotting
+(`make_figure`) are already written. Your job is the **layout** and the **callback**: follow the
+`TODO` comments.
 
 ```bash
 python app.py
 ```
 
-Open <http://127.0.0.1:8050> in your browser. You should see **Hello, World!**
+Stuck? `suggested_solution.py` has one way to do it.
 
-Because the app runs with `debug=True`, the page reloads automatically when you save changes to `app.py`.
+### Set the app title
 
-## 6. Stop the app
+The heading comes from the `APP_TITLE` environment variable. To try it locally in PowerShell:
+
+```powershell
+$env:APP_TITLE = "Wave explorer"
+```
+
+```powershell
+python app.py
+```
+
+When you publish the app, set `APP_TITLE` in the hosting service's environment settings
+instead. If it isn't set, the heading is **My trigonometry app**.
+
+## 7. Stop the app
 
 Press `Ctrl+C` in the terminal.
 
